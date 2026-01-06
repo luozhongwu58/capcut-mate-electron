@@ -1,17 +1,14 @@
 ﻿{
   "name": "guangying-capcut-mate",
-  "productName": "【光影】【光影】剪映小助手",
-  "version": "1.0.4",
-  "description": "【光影】剪映草稿自动化下载工具",
+  "productName": "【光影】剪映小助手",
+  "version": "1.0.9",
+  "description": "【光影】剪映草稿自动化工具",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder",
-    "build-win": "electron-builder --win",
-    "build-mac": "electron-builder --mac",
-    "build-all": "electron-builder -mw"
+    "build": "electron-builder"
   },
-  "keywords": [],
+  "keywords": ["capcut", "video", "editor"],
   "author": "guangying",
   "license": "MIT",
   "devDependencies": {
@@ -20,7 +17,7 @@
   },
   "build": {
     "appId": "com.guangying.capcutmate",
-    "productName": "【光影】【光影】剪映小助手",
+    "productName": "【光影】剪映小助手",
     "directories": {
       "output": "dist"
     },
@@ -30,29 +27,18 @@
       "ui/**/*"
     ],
     "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": ["x64"]
-        }
-      ],
+      "target": ["nsis"],
       "icon": "assets/icons/logo.ico"
     },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "allowElevation": true,
       "createDesktopShortcut": true,
-      "createStartMenuShortcut": true,
-      "shortcutName": "【光影】【光影】剪映小助手",
-      "installerIcon": "assets/icons/logo.ico",
-      "uninstallerIcon": "assets/icons/logo.ico",
-      "installerHeaderIcon": "assets/icons/logo.ico"
+      "shortcutName": "【光影】剪映小助手"
     },
     "mac": {
       "target": ["dmg"],
-      "icon": "assets/icons/logo.icns",
-      "category": "public.app-category.utilities"
+      "icon": "assets/icons/logo.icns"
     }
   }
 }

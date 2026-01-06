@@ -1,4 +1,4 @@
-# 1. 简介
+﻿# 1. 简介
 使用electron实现剪映小助手客户端，用于下载剪映草稿
 
 # 2. 相关项目与资源
@@ -26,13 +26,9 @@ npm start
 ```
 
 ## 开源社区问题交流群
-- 微信群：
 
   <img src="./assets/wechat-q.jpg" width="344" height="498" alt="剪映小助手">
 
-## 商业合作
-- 微信：
 
-  <img src="./assets/wechat.jpg" width="220" height="220" alt="技术支持微信">
 
 - 邮箱：taohongmin51@gmail.com
