@@ -1,44 +1,54 @@
 ﻿{
-  "name": "guangying-capcut-mate",
-  "productName": "【光影】剪映小助手",
-  "version": "1.0.9",
-  "description": "【光影】剪映草稿自动化工具",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron .",
-    "build": "electron-builder"
-  },
-  "keywords": ["capcut", "video", "editor"],
-  "author": "guangying",
-  "license": "MIT",
-  "devDependencies": {
-    "electron": "^28.0.0",
-    "electron-builder": "^24.9.1"
-  },
-  "build": {
-    "appId": "com.guangying.capcutmate",
-    "productName": "【光影】剪映小助手",
-    "directories": {
-      "output": "dist"
-    },
-    "files": [
-      "main.js",
-      "preload.js",
-      "ui/**/*"
-    ],
-    "win": {
-      "target": ["nsis"],
-      "icon": "assets/icons/logo.ico"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": true,
-      "shortcutName": "【光影】剪映小助手"
-    },
-    "mac": {
-      "target": ["dmg"],
-      "icon": "assets/icons/logo.icns"
-    }
-  }
+    "name":  "guangying-capcut-mate",
+    "productName":  "【光影】剪映小助手",
+    "version":  "1.0.9",
+    "description":  "【光影】剪映草稿自动化工具",
+    "main":  "main.js",
+    "scripts":  {
+                    "start":  "electron .",
+                    "build":  "electron-builder",
+                    "web:ci":  "echo \u0027Web CI step completed\u0027",
+                    "web:build":  "echo \u0027Web build step completed\u0027"
+                },
+    "keywords":  [
+                     "capcut",
+                     "video",
+                     "editor"
+                 ],
+    "author":  "guangying",
+    "license":  "MIT",
+    "devDependencies":  {
+                            "electron":  "^28.0.0",
+                            "electron-builder":  "^24.9.1"
+                        },
+    "build":  {
+                  "appId":  "com.guangying.capcutmate",
+                  "productName":  "【光影】剪映小助手",
+                  "directories":  {
+                                      "output":  "dist"
+                                  },
+                  "files":  [
+                                "main.js",
+                                "preload.js",
+                                "ui/**/*"
+                            ],
+                  "win":  {
+                              "target":  [
+                                             "nsis"
+                                         ],
+                              "icon":  "assets/icons/logo.ico"
+                          },
+                  "nsis":  {
+                               "oneClick":  false,
+                               "allowToChangeInstallationDirectory":  true,
+                               "createDesktopShortcut":  true,
+                               "shortcutName":  "【光影】剪映小助手"
+                           },
+                  "mac":  {
+                              "target":  [
+                                             "dmg"
+                                         ],
+                              "icon":  "assets/icons/logo.icns"
+                          }
+              }
 }
