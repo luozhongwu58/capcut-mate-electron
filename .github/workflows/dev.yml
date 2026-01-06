@@ -1,4 +1,4 @@
-name: Build
+﻿name: Build
 
 on:
   push:
@@ -26,47 +26,47 @@ jobs:
             installer_command: build-mac-installer
 
     steps:
-      - name: 准备代码
+      - name: 鍑嗗浠ｇ爜
         uses: actions/checkout@v4
 
-      - name: 设置Node.js环境
+      - name: 璁剧疆Node.js鐜
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
 
-      - name: 安装Electron依赖 & 安装前端依赖 & 构建前端
+      - name: 瀹夎Electron渚濊禆 & 瀹夎鍓嶇渚濊禆 & 鏋勫缓鍓嶇
         run: npm ci && npm run web:ci && npm run web:build
 
-      - name: 更新版本号
+      - name: 鏇存柊鐗堟湰鍙?
         run: node scripts/update-version.js
         env:
           GITHUB_REF: ${{ github.ref }}
 
-      - name: 根据平台打包应用程序
+      - name: 鏍规嵁骞冲彴鎵撳寘搴旂敤绋嬪簭
         run: npm run ${{ matrix.build_command }}
 
-      - name: 根据平台创建安装包
+      - name: 鏍规嵁骞冲彴鍒涘缓瀹夎鍖?
         run: npm run ${{ matrix.installer_command }}
         env:
-          # 添加环境变量以解决macOS构建问题
+          # 娣诲姞鐜鍙橀噺浠ヨВ鍐砿acOS鏋勫缓闂
           CSC_IDENTITY_AUTO_DISCOVERY: false
           DEBUG: electron-builder
 
-      - name: 列出dist目录内容
+      - name: 鍒楀嚭dist鐩綍鍐呭
         run: |
-          echo "当前操作系统: ${{ runner.os }}"
+          echo "褰撳墠鎿嶄綔绯荤粺: ${{ runner.os }}"
           ls dist/
         shell: bash
 
-      - name: 上传安装包构件
+      - name: 涓婁紶瀹夎鍖呮瀯浠?
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.artifact_name }}-installer
           path: dist/
           if-no-files-found: ignore
 
-      - name: 发布版本
+      - name: 鍙戝竷鐗堟湰
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v1
         with:

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import electronService from "../services/electronService";
 
 const externalUrl = "https://gy.aiznwd.com/external-features";
@@ -9,11 +9,11 @@ function ExternalWebpage() {
   
   const checkAccessibility = async () => {
     try {
-      // 使用Electron提供的API来检测URL是否可访问（绕过CORS限制 ?
+      // 使用Electron提供的API来检测URL是否可访问（绕过CORS限制）
       const result = await electronService.checkUrlAccess(externalUrl);
       setIsAccessible(result.accessible);
     } catch (error) {
-      // 请求失败，表示不可访 ?
+      // 请求失败，表示不可访问
       setIsAccessible(false);
       console.error("无法访问外部网页:", error);
     }
@@ -22,7 +22,7 @@ function ExternalWebpage() {
   useEffect(() => {
     checkAccessibility();
     // const handleResize = () => {
-    //   // 计算合适的高度，确保网页内容完整显 ?
+    //   // 计算合适的高度，确保网页内容完整显示
     //   const newHeight = Math.max(300, window.innerHeight - 300) + "px";
     //   setIframeHeight(newHeight);
     // };
@@ -53,11 +53,11 @@ function ExternalWebpage() {
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
           />
         ) : (
-          // 不可访问时显示的默认静态广 ?
+          // 不可访问时显示的默认静态广告
           <div className="default-advertisement">
             <div className="ad-content">
               <h2>欢迎使用剪映草稿下载工具</h2>
-              <p>我们的工具可以帮助您轻松下载剪映草稿，提高工作效�?</p>
+              <p>我们的工具可以帮助您轻松下载剪映草稿，提高工作效率。</p>
             </div>
           </div>
         )}

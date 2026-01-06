@@ -1,9 +1,9 @@
-/**
+﻿/**
  * Electron Builder Configuration
  */
 module.exports = {
   appId: "com.gogoshine.capcut-mate",
-  productName: "剪映小助手",
+  productName: "【光影】剪映小助手",
   directories: {
     output: "dist"
   },

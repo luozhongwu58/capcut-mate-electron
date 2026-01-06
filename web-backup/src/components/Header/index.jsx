@@ -21,7 +21,7 @@ function TopHeader({ onTabChange, selectedTab }) {
             className={`top-nav-item`}
             onClick={() => {
               handleTabClick("download");
-              electronService.openExternalUrl("https://gy.aiznwd.com");
+              electronService.openExternalUrl("https://aiznwd.com");
             }}
           >
             前往官网
