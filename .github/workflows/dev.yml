@@ -36,7 +36,7 @@ jobs:
           cache: 'npm'
 
       - name: 瀹夎Electron渚濊禆 & 瀹夎鍓嶇渚濊禆 & 鏋勫缓鍓嶇
-        run: npm ci && npm run web:ci && npm run web:build
+        run: npm ci
 
       - name: 鏇存柊鐗堟湰鍙?
         run: node scripts/update-version.js
@@ -78,3 +78,4 @@ jobs:
           overwrite: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
