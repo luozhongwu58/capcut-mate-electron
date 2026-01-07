@@ -1,0 +1,51 @@
+name: Build All Platforms
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            platform: win
+            args: --win --x64
+            artifact: windows
+          - os: macos-latest
+            platform: mac-intel
+            args: --mac --x64
+            artifact: mac-intel
+          - os: macos-latest
+            platform: mac-arm
+            args: --mac --arm64
+            artifact: mac-arm
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npm run web:i || true
+          npm run web:build || true
+
+      - name: Build App
+        run: npx electron-builder ${{ matrix.args }} --publish never
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: |
+            dist/*.exe
+            dist/*.dmg
+            dist/*.zip
+          if-no-files-found: ignore
