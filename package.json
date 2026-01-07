@@ -2,7 +2,7 @@
     "name": "guangying-capcut-mate",
   "productName": "【光影】剪映小助手",
     "version":  "0.0.100",
-    "description":  "鍓槧灏忓姪鎵嬶紝鐢ㄤ簬涓嬭浇鍓槧鑽夌",
+    "description":  "光影剪映小助手 - CapCut Mate",
     "main":  "main.js",
     "scripts":  {
                     "start":  "electron --enable-logging --v=1 .",
