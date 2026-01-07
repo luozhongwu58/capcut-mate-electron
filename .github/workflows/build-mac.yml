@@ -1,0 +1,31 @@
+﻿name: Build Mac App
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-mac:
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 18
+    
+    - name: Install dependencies
+      run: |
+        npm install
+        npm run web:i || true
+        npm run web:build || true
+    
+    - name: Build Mac App
+      run: npx electron-builder --mac --x64
+    
+    - uses: actions/upload-artifact@v4
+      with:
+        name: guangying-mac-app
+        path: |
+          dist/*.dmg
+          dist/*.zip
