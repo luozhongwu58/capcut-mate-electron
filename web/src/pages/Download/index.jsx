@@ -10,6 +10,9 @@ import LogModule from "../../components/LogModule";
 
 import "./index.css";
 
+// 默认服务器地址（可在配置中心修改）
+const DEFAULT_API_BASE = "https://jianying.guangyingai.cn/openapi/capcut-mate/v1/get_draft";
+
 function MainPage() {
   const [textareaValue, setTextareaValue] = useState("");
   const [isDownloadOpen, setIsDownloadOpen] = useState(true);
@@ -44,7 +47,7 @@ function MainPage() {
 
   const handleDownload = async () => {
     if (!textareaValue) {
-      toast.warn("请输入草稿地址，多个使用回车换行分隔");
+      toast.warn("请输入草稿地址或草稿ID，多个使用回车换行分隔");
       return;
     }
 
@@ -57,11 +60,22 @@ function MainPage() {
   };
 
   const saveFile = async (value) => {
-    // 从URL中提取draft_id
-    const urlParams = new URLSearchParams(
-      value.includes("?") ? value.split("?")[1] : ""
-    );
-    const targetId = urlParams.get("draft_id");
+    let fullUrl = value;
+    let targetId = value;
+
+    // 判断是否为完整URL
+    if (!value.startsWith('http')) {
+      // 只输入了ID，自动拼接完整URL
+      fullUrl = `${DEFAULT_API_BASE}?draft_id=${value}`;
+      targetId = value;
+      console.log(`自动拼接URL: ${fullUrl}`);
+    } else {
+      // 是完整URL，从中提取draft_id
+      const urlParams = new URLSearchParams(
+        value.includes("?") ? value.split("?")[1] : ""
+      );
+      targetId = urlParams.get("draft_id");
+    }
 
     if (!targetId) {
       toast.warn(`${value} 中缺少 draft_id 参数`);
@@ -69,7 +83,7 @@ function MainPage() {
     }
 
     try {
-      const jsonData = await electronService.getUrlJsonData(value);
+      const jsonData = await electronService.getUrlJsonData(fullUrl);
       if (jsonData?.code !== 0 || !jsonData?.files) {
         toast.error("获取文件列表失败，请确保您输入的地址可正常访问");
         return;
@@ -87,7 +101,7 @@ function MainPage() {
       setLogs([]);
 
       await electronService.saveFile({
-        sourceUrl: value,
+        sourceUrl: fullUrl,
         remoteFileUrls: matchedFiles,
         targetId,
         isOpenDir: isDownloadOpen,
