@@ -4,11 +4,11 @@ function Tabs({ onTabChange, initialContent }) {
   const templates = {
     template1: {
       title: "案例一",
-      content: "https://capcut-mate.gy.aiznwd.com/openapi/capcut-mate/v1/get_draft?draft_id=20251204214904ccb1af38"
+      content: "20251204214904ccb1af38"
     },
     template2: {
       title: "案例二",
-      content: "https://capcut-mate.gy.aiznwd.com/openapi/capcut-mate/v1/get_draft?draft_id=2025120421372636a27729"
+      content: "2025120421372636a27729"
     }
   };
 
